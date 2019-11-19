@@ -4,10 +4,9 @@ class View
 	public $view_file;
 	public $view_vars = array();
 		
-	function assign($vars)
+	function assign($name, $value)
 	{
-		if(!is_null($vars))
-			$this->view_vars = array_merge($this->view_vars, $vars);
+	    $this->view_vars = array_merge($this->view_vars, [$name => $value]);
 	}
 	
 	function display($file)

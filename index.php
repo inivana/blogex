@@ -8,4 +8,7 @@ if(!defined('NYXIEPATH'))
 require_once(NYXIEPATH . 'nyxie.php');
 
 $nyxie = new Nyxie;
+
+$nyxie->register_controller("index", "IndexController", true);
+
 $nyxie->start();

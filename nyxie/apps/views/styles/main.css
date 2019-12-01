@@ -1,0 +1,11 @@
+#main {
+    width: 500px;
+    min-height: 100px;
+    margin: auto;
+    text-align: center;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    color: white;
+    padding-top: 50px;
+    font-size: 24px;
+}

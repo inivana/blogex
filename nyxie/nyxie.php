@@ -37,11 +37,11 @@ class Nyxie
                 $method_name = $this->default_method;
                 break;
             case 1:
-                $controller_name = $path_info[0];
+                $controller_name = $path_info[0] . "Controller";
                 $method_name = $this->default_method;
                 break;
             case 2:
-                $controller_name = $path_info[0];
+                $controller_name = $path_info[0] . "Controller";
                 $method_name = $path_info[1];
                 break;
         }

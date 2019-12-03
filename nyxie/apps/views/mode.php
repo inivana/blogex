@@ -3,9 +3,10 @@
     <meta charset="utf-8">
 
     <title>Index</title>
-	 <script src="/nyxie/apps/views/js/main-view-script.js"></script> 
-	  <script src="/nyxie/apps/views/js/route-menu.js"></script> 
-    <link rel="stylesheet" href="/nyxie/apps/views/styles/main-view-style.css">
+	 
+	 <script src="/nyxie/apps/views/js/mode-script.js"></script> 
+	 <script src="/nyxie/apps/views/js/route-menu.js"></script> 
+    <link rel="stylesheet" href="/nyxie/apps/views/styles/mode-style.css">
 </head>
 
 <body onload="onload()">

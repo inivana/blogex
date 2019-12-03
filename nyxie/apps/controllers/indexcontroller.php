@@ -23,13 +23,12 @@ class IndexController extends Nyxie
         $view->assign("items", $array);
         $view->display("add-article.php");
     }
-	function nowy(){
-	    $view = new View();
-		$view->assign("title", "fds");
-        $view->display("nowy.php");
-	}
 	function blogex(){
 		$view = new View();
         $view->display("main-view.php");
+	}
+		function mode(){
+		$view = new View();
+        $view->display("mode.php");
 	}
 }

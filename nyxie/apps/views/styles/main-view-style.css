@@ -7,92 +7,26 @@
 	padding :0px;
 	margin-top:-1%;
 }
-#add-article-container{
-	float:left;
-	width: 80%;
-	height: 90%;
-	background-color : #61450f;
-	margin-left: 2.5%;
-	margin-top:2%;
-}
-
-#article-title-container{
-	float: left;
-	width: 80%;
-	height: 10%;
-	background-color : #bdae91;
-	margin-top: 2.5%;
-	margin-left: 5%;
-}
-
-#article-content-container{
-	float: left;
-	width: 92.5%;
-	height: 60%;
-	background-color : #bdae91;
-	margin-left: 5%;
-	margin-right: 5%;
-	margin-top:2%;
-}
-
-#article-tag-container{
-	float: left;
-	width: 92.5%;
-	height: 10%;
-	background-color : #bdae91;
-	margin-left: 5%;
-	margin-right: 5%;
-	margin-top:2%;
-}
-
-#article-image-container{
-	float: left;
-	width : 10%;
-	height: 10%;
-	background-color : white;
-	margin-top: 2.5%;
-	margin-left:2%;
-	cursor:pointer;
-}
-
-#send-button{
-	margin-top: 1%;
-	margin-left:87.8%;
-	width:10%;
-	height: 3.5%;
-}
-#tag-button{
-	margin-top: 1%;
-	margin-left:2%;
-	width:10%;
-	height: 30%;
-}
-#title-field{
-	width: 80%;
-	height:70%;
-	margin: 1%;
-	font-size: 25px;
-	text-align:center;
-}
-#tag-field{
-	width: 60%;
-	height:70%;
-	margin: 1%;
-	font-size: 16px;
-	text-align:center;
-}
-#content{
+.menu-button{
+	padding: :15px;
+	margin-top:35%;
+	font-size: 30px;
 	width: 100%;
-	margin: 0px;
-	padding : 0px;
+	cursor: pointer;
+	background-color : #317985;
+}
+#content-container{
+	float:left;
+	width: 85%;
 	height:100%;
-	 resize: none;
-	 font-size:20px;
+	background-color:black;
 }
-span{
-	font-size: 33px;
-	margin-left: 1%;
+ul{
+	list-style-type: none;
+	margin-top:55%;
+	width: 70%;
 }
+
 body{
 	width:100%;
 	height:100%;

@@ -9,6 +9,7 @@ require_once(NYXIEPATH . 'nyxie.php');
 
 $nyxie = new Nyxie;
 
-$nyxie->register_controller("index", "IndexController", true);
+$nyxie->register_controller("blog", "BlogController", true);
+$nyxie->register_controller("adminpanel", "AdminPanelController");
 
 $nyxie->start();

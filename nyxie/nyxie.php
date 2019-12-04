@@ -61,6 +61,7 @@ class Nyxie
     function register_controller($endpoint_name, $controller_name, $is_default = false)
     {
         // TODO: Allow to register only one controller as default
+        // TODO: Follow registered endpoints to evaluate which controller should be loaded
         if ($is_default) {
             $this->default_controller = $controller_name;
         }

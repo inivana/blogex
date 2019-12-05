@@ -4,35 +4,17 @@ class BlogController extends Nyxie
 {
     function index()
     {
-        $view = new View();
+        $article_model = new ArticleModel();
+        $articles = $article_model->get_all();
 
-        // TODO: That will come from DB
-        $articles = [
-            array(
-                "title" => "Blogex release incoming!",
-                "category" => "Releases",
-                "date" => "11.04.2019 15:45",
-                "brief" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt risus ut dui ultrices mollis. Nam tincidunt augue vitae ante congue, vitae pulvinar erat eleifend. Aliquam ultricies lacinia eros at imperdiet. Vivamus vulputate leo et sapien tempor vehicula. Pellentesque a blandit velit. Nam odio tellus, vestibulum vitae leo at, varius pulvinar lectus..."
-            ),
-            array(
-                "title" => "Project deadline is coming to the town.",
-                "category" => "Christmas",
-                "date" => "23.12.2019 15:45",
-                "brief" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt risus ut dui ultrices mollis. Nam tincidunt augue vitae ante congue, vitae pulvinar erat eleifend. Aliquam ultricies lacinia eros at imperdiet. Vivamus vulputate leo et sapien tempor vehicula. Pellentesque a blandit velit. Nam odio tellus, vestibulum vitae leo at, varius pulvinar lectus..."
-            ),
-            array(
-                "title" => "Demanded gifts are on the way.",
-                "category" => "Santa Claus",
-                "date" => "06.12.2019 12:34",
-                "brief" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt risus ut dui ultrices mollis. Nam tincidunt augue vitae ante congue, vitae pulvinar erat eleifend. Aliquam ultricies lacinia eros at imperdiet. Vivamus vulputate leo et sapien tempor vehicula. Pellentesque a blandit velit. Nam odio tellus, vestibulum vitae leo at, varius pulvinar lectus..."
-            ),
-            array(
-                "title" => "All you had to do was follow the damn train, CJ!",
-                "category" => "GTA",
-                "date" => "04.07.2012 09:31",
-                "brief" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt risus ut dui ultrices mollis. Nam tincidunt augue vitae ante congue, vitae pulvinar erat eleifend. Aliquam ultricies lacinia eros at imperdiet. Vivamus vulputate leo et sapien tempor vehicula. Pellentesque a blandit velit. Nam odio tellus, vestibulum vitae leo at, varius pulvinar lectus..."
-            ),
-        ];
+        // Trim articles content
+        // TODO: Evaluate category name by id
+        for($i = 0; $i < count($articles); $i++)
+        {
+            $articles[$i]["content"] = substr($articles[$i]["content"], 0, 350) . "...";
+        }
+
+        $view = new View();
 
         $menu_links = [
             array("label" => "Main", "href" => ""),

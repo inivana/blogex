@@ -5,10 +5,11 @@
                 <div class="article">
                     <div class="article-title">' . $article["title"] . '</div>
                         <div class="article-description">
-                            <div class="article-category">#' . $article["category"] . '</div>
-                            <div class="article-date">' . $article["date"] . '</div>
+                            <div class="article-category">#' . $article["category_id"] . '</div>
+                            <div class="article-date">' . $article["date_created"] . '</div>
                         </div>
-                    <div class="article-brief">' . $article["brief"] . '</div>
+                    <div class="article-brief">' . $article["content"] . '</div>
+                    <a href="/articles/?id=' . $article["id"] . '">Read more!</a>
                 </div>
                 ';
     }

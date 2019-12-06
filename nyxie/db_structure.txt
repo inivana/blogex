@@ -35,3 +35,14 @@ CREATE TABLE Users (
  PRIMARY KEY(ID),
  UNIQUE(Category)
  )
+
+CREATE TABLE COMMENTS(
+ ID int NOT NULL AUTO_INCREMENT,
+ Content varchar(500) CHARACTER SET 'utf8',
+ Date date,
+ UserID int,
+ ArticleID int,
+ FOREIGN KEY (UserID) REFERENCES Users(ID),
+ FOREIGN KEY (ArticleID ) REFERENCES Articles(ID),
+ PRIMARY KEY (ID)
+)

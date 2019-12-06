@@ -5,11 +5,16 @@ class AdminPanelController extends Nyxie
     function index()
     {
         $view = new View();
+		$view->assign("menu_bar", "left-menu.php");
         $view->display("main-view.php");
     }
 	
 	function get_index(){
-		
+		$array = ["Item 1", "Item 2", "Item 3"];
+        $view = new View();
+        $view->assign("title", "Lista");
+        $view->assign("items", $array);
+        $view->display("checkmore.php");
 	}
 
     function checkmore()
@@ -24,22 +29,22 @@ class AdminPanelController extends Nyxie
     {
         $array = ["Item 1", "Item 2", "Item 3"];
         $view = new View();
+		$view->assign("menu_bar", "left-menu.php");
         $view->assign("title", "Add article");
         $view->assign("items", $array);
         $view->display("add-article.php");
     }
-	function blogex(){
-		$view = new View();
-        $view->display("main-view.php");
-	}
+
 	function mode(){
 		$view = new View();
+		$view->assign("menu_bar", "left-menu.php");
 		$title = "hello";
 		$view->assign("title",$title);
         $view->display("mode.php");
 	}
 	function settings(){
 		$view = new View();
+		$view->assign("menu_bar", "left-menu.php");
         $view->display("settings.php");
 	}
 	 

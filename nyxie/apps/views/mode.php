@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/nyxie/apps/views/styles/mode-style.css">
 </head>
 
-<body onload="onload()">
+<body>
 
     <div id="left-menu">
          <ul>
@@ -21,7 +21,12 @@
 		 </ul>
     </div>
 
+	
+	
 	<div id="content-container">
+	<!-- tu maja byc artykuly usera z bazy-->
+	
+	
 	
 	</div>
 	

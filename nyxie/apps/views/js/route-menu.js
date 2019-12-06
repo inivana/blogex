@@ -1,23 +1,34 @@
+
 function route(){
-	
+	let url = "index/index?location=";
 	element =  event.target.id;
-	
 	switch(element){
 		
 		case "add":
-		window.location.href = "/nyxie/apps/views/add-article.php";
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open( "GET", url+"add-article", false ); // false for synchronous request
+			xmlHttp.send( null );
 		break;
 		case "blogex":
-		window.location.href = "/nyxie/apps/views/main-view.php";
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open( "GET", url+"main-view", false ); // false for synchronous request
+			xmlHttp.send( null );
 		break;
 		case "settings":
-		window.location.href = "http://www.google.com";
+		    var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open( "GET", url+"settings", false ); // false for synchronous request
+			xmlHttp.send( null );
+
 		break;
 		case "logout":
-		window.location.href = "http://www.google.com";
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open( "GET", url+"logout", false ); // false for synchronous request
+			xmlHttp.send( null );
 		break;
 		case "mode":
-		window.location.href = "/nyxie/apps/views/mode.php";
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open( "GET", url+"mode", false ); // false for synchronous request
+			xmlHttp.send( null );
 		break;
 	}
 	

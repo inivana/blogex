@@ -1,31 +1,10 @@
-ul{
-	list-style-type: none;
-	margin-top:55%;
-	width: 70%;
-}
-.menu-button{
-	padding: :15px;
-	margin-top:35%;
-	font-size: 30px;
-	width: 100%;
-	cursor: pointer;
-	background-color : #317985;
-}
-#left-menu{
-	background-color : #317985;
-	width:15%;
-	height: 102%;
-	float:left;
-	margin: 0px;
-	padding :0px;
-	margin-top:-1%;
-}
+
 
 #add-article-container{
 	float:left;
 	width: 80%;
 	height: 90%;
-	background-color : #61450f;
+	background-color : #614444;
 	margin-left: 2.5%;
 	margin-top:2%;
 }

@@ -43,20 +43,19 @@
 	margin-top:1%;
 	border : 1px dotted black;
 	height: 30%;
-	background-color :#dfe1e8;
+	background-color :#d3d6e0;
 	clear:both;
 }
 body{
 	width:100%;
 	height:100%;
 	margin: 0px;
-	background-color : #7a9ba1;
+	background-color : #dae3df;
 	paddding :0px;
 }
 .header{
 	width:99% !important;
 	padding: 0.5%;
-
 	border-bottom: 1px solid brown;
 	font-size: 30px;
 	height:10%;

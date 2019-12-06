@@ -5,20 +5,15 @@
     <title>Index</title>
 	 
 	 <script src="/nyxie/apps/views/js/mode-script.js"></script> 
-	 <script src="/nyxie/apps/views/js/route-menu.js"></script> 
+	<script src="/nyxie/apps/views/left-menu/route-menu.js"></script> 
+	 <link rel="stylesheet" href="/nyxie/apps/views/left-menu/left-menu.css">
     <link rel="stylesheet" href="/nyxie/apps/views/styles/mode-style.css">
 </head>
 
 <body>
 
     <div id="left-menu">
-         <ul>
-		 <li><input type="button" class="menu-button" id="blogex" onclick="route()" value="Blogex"/></li>
-		 <li><input type="button" class="menu-button" id="add" onclick="route()" value="Dodaj Artykul"/></li>
-		 <li><input type="button" class="menu-button" id="mode" onclick="route()" value="Moderuj"/></li>
-		 <li><input type="button" class="menu-button" id="settings" onclick="route()" value="Ustawienia"/></li>
-		 <li><input type="button" class="menu-button" id="logout" onclick="route()" value="Wyloguj sie"/></li>
-		 </ul>
+		<?php include($menu_bar); ?>
     </div>
 
 	
@@ -26,7 +21,7 @@
 	<div id="content-container">
 	<!-- tu maja byc artykuly usera z bazy-->
 	
-	
+	<?=$title?>
 	
 	</div>
 	

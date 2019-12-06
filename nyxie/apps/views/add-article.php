@@ -4,8 +4,10 @@
 
     <title>Index</title>
 	 <script src="/nyxie/apps/views/js/add-article-script.js"></script> 
-	  <script src="/nyxie/apps/views/js/route-menu.js"></script> 
-    <link rel="stylesheet" href="/nyxie/apps/views/styles/add-article-style.css">
+	 <script src="/nyxie/apps/views/left-menu/route-menu.js"></script> 
+	 <link rel="stylesheet" href="/nyxie/apps/views/left-menu/left-menu.css">
+     <link rel="stylesheet" href="/nyxie/apps/views/styles/add-article-style.css">
+	 
 </head>
 
 <body onload="onload()">

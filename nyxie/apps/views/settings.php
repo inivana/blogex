@@ -5,21 +5,15 @@
     <title>Index</title>
 	 
 	 <script src="/nyxie/apps/views/js/settings.js"></script> 
-	 <script src="/nyxie/apps/views/js/route-menu.js"></script> 
-    <link rel="stylesheet" href="/nyxie/apps/views/styles/mode-style.css">
+	 <script src="/nyxie/apps/views/left-menu/route-menu.js"></script> 
+	 <link rel="stylesheet" href="/nyxie/apps/views/left-menu/left-menu.css">
 	 <link rel="stylesheet" href="/nyxie/apps/views/styles/settings.css">
 </head>
 
 <body onload="load()">
 
     <div id="left-menu">
-         <ul>
-		 <li><input type="button" class="menu-button" id="blogex" onclick="route()" value="Blogex"/></li>
-		 <li><input type="button" class="menu-button" id="add" onclick="route()" value="Dodaj Artykul"/></li>
-		 <li><input type="button" class="menu-button" id="mode" onclick="route()" value="Moderuj"/></li>
-		 <li><input type="button" class="menu-button" id="settings" onclick="route()" value="Ustawienia"/></li>
-		 <li><input type="button" class="menu-button" id="logout" onclick="route()" value="Wyloguj sie"/></li>
-		 </ul>
+		<?php include($menu_bar); ?>
     </div>
 
 
@@ -104,7 +98,7 @@
 			</tr>
 			<tr>
 			<td>Zatwierdz</td>
-			<td><input class="submit-button" type="submit" value="Zmien email"/></td>
+			<td><input class="submit-button" id="change_email" disabled="true" type="submit" value="Zmien email"/></td>
 			</tr>
 		 </table>
 			

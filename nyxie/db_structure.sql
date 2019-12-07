@@ -25,7 +25,7 @@ CREATE TABLE ARTICLES
     Date       datetime DEFAULT CURRENT_TIMESTAMP,
     UserID     int,
     CategoryID int,
-    FOREIGN KEY (UserID) REFERENCES Users (ID),
+
     PRIMARY KEY (ID)
 );
 
@@ -35,8 +35,6 @@ CREATE TABLE ARTICLES_CATEGORIES
     UserID     int,
     CategoryID int,
     PRIMARY KEY (ID),
-    FOREIGN KEY (UserID) REFERENCES Users (ID),
-    FOREIGN KEY (CategoryID) REFERENCES Categories (ID)
 );
 
 CREATE TABLE COMMENTS
@@ -46,21 +44,14 @@ CREATE TABLE COMMENTS
     Date      datetime DEFAULT CURRENT_TIMESTAMP,
     UserID    int,
     ArticleID int,
-    FOREIGN KEY (UserID) REFERENCES Users (ID),
-    FOREIGN KEY (ArticleID) REFERENCES Articles (ID),
     PRIMARY KEY (ID)
 );
 
- CREATE TABLE ARTICLES_CATEGORIES(
+
+ CREATE TABLE Tags(
   ID int NOT NULL AUTO_INCREMENT,
-  CategoryID int,
   ArticleID int,
   PRIMARY KEY (ID),
  );
- CREATE TABLE TAGS_ARTICLES(
-  ID int NOT NULL AUTO_INCREMENT,
-  TagID int,
-  ArticleID int,
-  PRIMARY KEY (ID),
-);
+
 

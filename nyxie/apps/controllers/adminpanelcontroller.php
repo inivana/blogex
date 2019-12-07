@@ -39,10 +39,6 @@ class AdminPanelController extends Nyxie
 		$categoryID = "1";
 		$userID = "1";
 		$tags = $_POST['tags'];
-		
-		
-		
-
         $view = new View();
 		$article_model = new ArticleModel();
 		$article_model->insert_article($userID,$content,$title,$categoryID,$tags);
@@ -51,10 +47,21 @@ class AdminPanelController extends Nyxie
         $view->display("mode.php");
     }
 	function mode(){
+		
+		$article_model = new ArticleModel();
+        $articles = $article_model->get_all();
+        for($i = 0; $i < count($articles); $i++)
+        {
+            $articles[$i]["Content"] = substr($articles[$i]["Content"], 0, 350) . "...";
+        }
+		
+		
 		$view = new View();
 		$view->assign("menu_bar", "left-menu.php");
-		$title = "hello";
-		$view->assign("title",$title);
+        $view->assign("content_file", "blog/articles-container.php");
+		
+		
+        $view->assign("articles", $articles);
         $view->display("mode.php");
 	}
 	function mode_get(){

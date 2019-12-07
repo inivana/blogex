@@ -20,9 +20,20 @@ class ArticleModel
 				"Title"  => $title,
 				"UserID"  => $userID 
 			);
-			echo"<script>console.log(". $tags . ");</script>";
-	
+		
 	$this->db->insert("articles",$article);
+	
+	//$articleFromDb = $this->db->where("*","articles","title = " . $title);
+	//$exploded_tags = explode("#",$tags);
+	//foreach ($exploded_tags as $tag){
+	//	$dummy = array(
+	//		"Tag" => $tag,
+	//		"ArticleID" => $articleID
+	//	);
+	//	$this->db->insert("tags",$tag);
+	
+	//}
+	
 	}
 
 }

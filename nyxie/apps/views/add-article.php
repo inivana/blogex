@@ -35,7 +35,7 @@
 	</textarea>
 	</div>
 	<div id="article-tag-container">
-	<input type="text" id="tag-field" disabled="true" name="tags" value=""/>
+	<input type="text" id="tag-field" readonly="true" name="tags" value=""/>
 	<input type="text" id="tag-bef-field" value=""/>
 	<input type="button" id="tag-button" onclick="add_tag()" value="Dodaj"/>
 	</div>

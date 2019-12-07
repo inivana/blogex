@@ -13,14 +13,15 @@ class ArticleModel
         return $this->db->select("*", "articles");
     }
 	
-	public function insert_article($userID,$content,$title,$categoryID){
+	public function insert_article($userID,$content,$title,$categoryID,$tags){
 	$article =array(
 				"CategoryID"  => $categoryID,
 				"Content"  => $content,
 				"Title"  => $title,
 				"UserID"  => $userID 
 			);
-			
+			echo"<script>console.log(". $tags . ");</script>";
+	
 	$this->db->insert("articles",$article);
 	}
 

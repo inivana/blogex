@@ -38,10 +38,15 @@ class AdminPanelController extends Nyxie
 		$title = $_POST['title'];
 		$categoryID = "1";
 		$userID = "1";
+		$tags = $_POST['tags'];
+		
+		
+		
 
         $view = new View();
 		$article_model = new ArticleModel();
-		$article_model->insert_article($userID,$content,$title,$categoryID);
+		$article_model->insert_article($userID,$content,$title,$categoryID,$tags);
+		
 		$view->assign("menu_bar", "left-menu.php");
         $view->display("mode.php");
     }

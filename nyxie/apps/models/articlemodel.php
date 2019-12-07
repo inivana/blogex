@@ -12,4 +12,18 @@ class ArticleModel
     {
         return $this->db->select("*", "articles");
     }
+	
+	public function insert_article($userID,$content,$title,$categoryID){
+	$article =array(
+				"CategoryID"  => $categoryID,
+				"Content"  => $content,
+				"Title"  => $title,
+				"UserID"  => $userID 
+			);
+			
+	$this->db->insert("articles",$article);
+	}
+
 }
+
+?>

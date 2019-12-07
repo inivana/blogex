@@ -23,7 +23,7 @@
 
 	
 	<div id="add-article-container">
-	<form action="/nyxie/apps/views/nowyx.php" method="POST">
+	<form action="add_article" method="POST">
 	<div id="article-title-container">
 	<span>Title:</span>
 	<input type="text" name="title" id="title-field" value=""/>
@@ -39,7 +39,7 @@
 	<input type="text" id="tag-bef-field" value=""/>
 	<input type="button" id="tag-button" onclick="add_tag()" value="Dodaj"/>
 	</div>
-	<input type="submit" id="send-button" disabled="true" onclick="add_article()" value="Wyslij"/>
+	<input type="submit" id="send-button" disabled="true" value="Wyslij"/>
 	</form>
 	</div>
 	

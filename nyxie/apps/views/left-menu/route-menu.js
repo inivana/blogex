@@ -18,8 +18,11 @@ function route(){
 		break;
 		case "blogex": 
 		if(user_url_splited[1] != ""){
-			window.location.replace("/adminpanel");
-		}			
+			window.location.replace("../");
+		}	else{
+			window.location.replace("/");
+		}
+		
 		break;
 		case "settings":
 		if(user_url.includes("settings") || (user_url_splited[1] != "")){

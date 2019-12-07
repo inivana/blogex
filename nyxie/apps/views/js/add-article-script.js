@@ -32,7 +32,7 @@
 	}
 	
 	function add_article() {
-		alert(x);
+		alert("");
 	}
 	
 

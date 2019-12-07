@@ -50,6 +50,7 @@ class AdminPanelController extends Nyxie
 		
 		$article_model = new ArticleModel();
         $articles = $article_model->get_all();
+		
         for($i = 0; $i < count($articles); $i++)
         {
             $articles[$i]["Content"] = substr($articles[$i]["Content"], 0, 350) . "...";

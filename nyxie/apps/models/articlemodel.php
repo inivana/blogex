@@ -23,16 +23,17 @@ class ArticleModel
 		
 	$this->db->insert("articles",$article);
 	
-	//$articleFromDb = $this->db->where("*","articles","title = " . $title);
-	//$exploded_tags = explode("#",$tags);
-	//foreach ($exploded_tags as $tag){
-	//	$dummy = array(
-	//		"Tag" => $tag,
-	//		"ArticleID" => $articleID
-	//	);
-	//	$this->db->insert("tags",$tag);
+	$articleFromDb = $this->db->query("select * from articles where title = \"" . trim($title) . "\"");
 	
-	//}
+	$exploded_tags = explode("#",$tags);
+	foreach ($exploded_tags as $tag){
+		$dummy = array(
+			"Tag" => $tag,
+			"ArticleID" => $articleFromDb["ID"]
+		);
+		$this->db->insert("tags",$dummy);
+	
+	}
 	
 	}
 

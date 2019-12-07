@@ -41,7 +41,7 @@
 		
 		let elementTags = document.getElementById("tag-field");
 		let elementTag = document.getElementById("tag-bef-field");
-		
+		if(elementTag.value == ""){return;}
 		let tag = elementTag.value;
 		let tags  = elementTags.value;
 		

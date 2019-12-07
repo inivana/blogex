@@ -44,8 +44,6 @@ class Nyxie
 
         $path_info = !strlen($request_url) ? [] : explode("/", $request_url);
 
-        var_dump($_GET);
-
         // Ignore first route section if it exists as directory in previous directory
         if (count($path_info) > 0 && is_dir("../" . $path_info[0])) {
             array_shift($path_info);

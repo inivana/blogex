@@ -4,7 +4,7 @@
 	let maximumTags = 4;
 	let currentTags = 0;
 	
-	function onload(){
+	function load(){
 		document.getElementById("title-field").addEventListener("keyup",function(){
 			title = document.getElementById("title-field").value;
 			

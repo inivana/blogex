@@ -15,8 +15,23 @@
 		<?php include($menu_bar); ?>
     </div>
 
+	HI
 	<div id="content-container">
-	
+		<?php
+		
+		if(isset($title)){
+			echo '$title';
+		}else{
+			echo 'nothing';
+		}
+		
+		?>
+		
+		
+		<form action="/adminpanel/index_get" method="GET">
+			<input type="text" name="title"/>
+			<input type="submit" value="OK"/>
+		</form>
 	</div>
 	
 </body>

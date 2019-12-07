@@ -20,50 +20,82 @@ spl_autoload_register(array('Nyxie', '__autoload'));
 class Nyxie
 {
     private $registered_controllers = [];
-    private $default_controller;
+    private $default_endpoint_name = null;
     private $default_method = "index";
 
     function start()
     {
-        $controller_name = null;
+        if (!$this->default_endpoint_name) {
+            throw new Exception("No default controller specified.");
+        }
+
+        $endpoint_name = null;
         $method_name = null;
 
         // Remove first slash to parse it easier
         $request_url = ltrim($_SERVER["REQUEST_URI"], "/");
         $path_info = !strlen($request_url) ? [] : explode("/", $request_url);
+
+        // Ignore first route section if it exists as directory in previous directory
+        if (count($path_info) > 0 && is_dir("../" . $path_info[0])) {
+            array_shift($path_info);
+        }
+
         switch (count($path_info)) {
-            case 0:
-                $controller_name = $this->default_controller;
-                $method_name = $this->default_method;
-                break;
             case 1:
-                $controller_name = $path_info[0] . "Controller";
+                $endpoint_name = $path_info[0];
                 $method_name = $this->default_method;
                 break;
             case 2:
-                $controller_name = $path_info[0] . "Controller";
+                $endpoint_name = $path_info[0];
                 $method_name = $path_info[1];
+                break;
+            default:
+                $endpoint_name = $this->default_endpoint_name;
+                $method_name = $this->default_method;
                 break;
         }
 
-        try
-        {
-            $controller = new $controller_name();
-            $controller->$method_name();
+        $controller_class_name = $this->resolve_endpoint($endpoint_name);
+
+        if (count($_GET)) {
+            $method_name .= "_get";
+        } elseif (count($_POST)) {
+            $method_name .= "_post";
         }
-        catch (Exception $e) {
-            echo "Site does not exists!";
+
+        if (!method_exists($controller_class_name, $method_name)) {
+            $method_name = $this->default_method;
+        }
+
+        try {
+            $controller = new $controller_class_name();
+            $controller->$method_name();
+        } catch (Exception $e) {
+            throw new RuntimeException("Running controller method failed");
         }
 
         return true;
     }
 
-    function register_controller($endpoint_name, $controller_name, $is_default = false)
+    private function resolve_endpoint($endpoint_name)
     {
-        // TODO: Allow to register only one controller as default
-        // TODO: Follow registered endpoints to evaluate which controller should be loaded
-        if ($is_default) {
-            $this->default_controller = $controller_name;
+        if (array_key_exists($endpoint_name, $this->registered_controllers)) {
+            return $this->registered_controllers[$endpoint_name];
+        } else {
+            return $this->registered_controllers[$this->default_endpoint_name];
+        }
+    }
+
+    public function register_controller($endpoint_name, $controller_name, $is_default = false)
+    {
+        if (!method_exists($controller_name, $this->default_method)) {
+            throw new Exception("Default method " . $this->default_method . " is not implemented in " . $controller_name);
+        }
+        if ($is_default && $this->default_endpoint_name) {
+            throw new Exception("There can exists only one default controller. Current: " . $this->resolve_endpoint($this->default_endpoint_name) . "New: " . $controller_name);
+        } elseif ($is_default) {
+            $this->default_endpoint_name = $endpoint_name;
         }
 
         $this->registered_controllers[$endpoint_name] = $controller_name;

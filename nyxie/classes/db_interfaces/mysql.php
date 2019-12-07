@@ -1,78 +1,68 @@
 <?php
-require_once("interface.php");
-// TODO: Determine if $tables is list or just a string
-class Mysql implements IDatabase
-{
-	public $connection;
-	public $results;
-	
-	function connect($host, $user, $pass)
-	{
-		$this->connection = mysql_connect($host, $user, $pass);
-		mysql_select_db("blogex", $this->connection);
-		
-		return true;
-	}
-	
-	function select($tables, $from)
-	{
-	    $results = [];
-		$resource = $this->query("SELECT " . implode(",", $tables) . " FROM " . $from);
-		while($row = mysql_fetch_assoc($resource))
-        {
-            array_push($results, $row);
-        }
-		
-		return $results;
-	}
-	
-	function where($tables, $from, $where)
-	{
-		$results = $this->query("SELECT " . implode(",", $tables) . " FROM " . $from . " WHERE " . $where);
-	}
-	
-	function insert($table, $values)
-	{
-		$values = implode(",", $this->add_apostrophe($values));
-		
-		$this->query("INSERT INTO " . $table . " VALUES (" . $values . ")");
-		
-		return true;
-	}
-	
-	function query($query)
-	{
-		return mysql_query($query, $this->connection);
-	}
-	
-	function fetch()
-	{
-		$results = mysql_fetch_assoc($this->results);
-		
-		return $results;
-	}
-	
-	function num_rows()
-	{
-		$num_rows = mysql_num_rows($this->results);
-		
-		return $num_rows;
-	}
+require_once("idatabase.php");
 
-	function add_apostrophe($array)
-	{
-		$new_array = null;
-		
-		for($i = 0; $i <= count($array)-1; $i++)
-		{
-			$new_array[$i] = "\"" . $array[$i] . "\"";
-		}
-		
-		return $new_array;
-	}
-	
-	function __destruct()
-	{
-		mysql_close($this->connection);
-	}
+class MySQL implements IDatabase
+{
+    protected $connection;
+
+    public function connect($host, $user, $pass, $db_name)
+    {
+        $this->connection = new mysqli($host, $user, $pass, $db_name);
+        if (!$this->connection) {
+            throw new Exception("Cannot connect to MySQL DB");
+        }
+
+        $this->connection->autocommit(true);
+    }
+
+    function select($tables, $from)
+    {
+        if (is_string($tables))
+            $tables = [$tables];
+
+        return $this->query("SELECT " . implode(",", $tables) . " FROM " . $from);
+    }
+
+    function where($tables, $from, $where)
+    {
+        if (is_string($tables))
+            $tables = [$tables];
+
+        return $this->query("SELECT " . implode(",", $tables) . " FROM " . $from . " WHERE " . $where);
+    }
+
+    function insert($table, $values)
+    {
+        $keys_string = implode(",", array_keys($values));
+        $values_string = implode(",", array_map([$this, "add_quotes"], array_values($values)));
+
+        return $this->query("INSERT INTO " . $table . "(" . $keys_string . ") VALUES (" . $values_string . ")");
+    }
+
+    function query($query)
+    {
+        $query_result = $this->connection->query($query);
+        $return_result = null;
+
+        if (is_bool($query_result)) {
+            $return_result = $query_result;
+        } else {
+            $return_result = $query_result->fetch_all(MYSQLI_ASSOC);
+            $query_result->close();
+        }
+
+        return $return_result;
+    }
+
+    private function add_quotes($value)
+    {
+        return "\"" . $value . "\"";
+    }
+
+    public function __destruct()
+    {
+        if ($this->connection) {
+            $this->connection->close();
+        }
+    }
 }

@@ -34,7 +34,17 @@ class Nyxie
 
         // Remove first slash to parse it easier
         $request_url = ltrim($_SERVER["REQUEST_URI"], "/");
+
+        // Delete GET parameters from url if passed
+        $get_params_start = strpos($request_url, "?");
+        if ($get_params_start)
+        {
+            $request_url = substr($request_url, 0, strpos($request_url, "?"));
+        }
+
         $path_info = !strlen($request_url) ? [] : explode("/", $request_url);
+
+        var_dump($_GET);
 
         // Ignore first route section if it exists as directory in previous directory
         if (count($path_info) > 0 && is_dir("../" . $path_info[0])) {

@@ -109,5 +109,8 @@ class Nyxie
 
         if (is_file(CONTROLLERSPATH . $class_name . '.php'))
             require_once(CONTROLLERSPATH . $class_name . '.php');
+
+        if (is_file(MODELSPATH . $class_name . '.php'))
+            require_once(MODELSPATH . $class_name . '.php');
     }
 }

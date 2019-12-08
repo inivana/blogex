@@ -6,4 +6,42 @@ body{
 	margin: 0px;
 	background-color : #7a9ba1;
 	paddding :0px;
+	background-image: url("/nyxie/apps/views/blog/assets/images/background.png");
+}
+input {
+	width:20%;
+}
+
+#content-container{
+	
+	width:60%;
+	float:left;
+}
+
+#articles-list {
+    margin: 45px;
+	
+}
+
+.article {
+    border: 1px black solid;
+    margin-bottom: 10px;
+}
+
+.article-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.article-description {
+    border-bottom: 1px #000000 dashed;
+}
+
+.article-category {
+    float: left;
+    margin-right: 5px;
+}
+
+.article-date {
+
 }

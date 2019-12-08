@@ -12,7 +12,29 @@ class ArticleModel
     {
         return $this->db->select("*", "articles");
     }
-	
+	public function get_article($id){
+		return $this->db->query("select * from articles where ID = \"" . trim($id) . "\"")[0];	
+	}
+	public function get_article_tags($id){
+		return $this->db->query("select * from tags where ArticleID = \"" . trim($id) . "\"");	
+	}
+	public function update_article($id,$content,$title,$categoryID,$tags){
+		$this->db->query("update articles set Title = \"" . $title."\", Content = \"". $content . "\", CategoryID = " . $categoryID . " where ID = " . $id. "");	
+		$this->db->query("delete from tags where ID = " . $id. "");
+		$exploded_tags = explode("#",$tags);
+		foreach ($exploded_tags as $tag){
+			if(trim($tag) == "") {continue;}
+			$dummy = array(
+				"Tag" => $tag,
+				"ArticleID" => $id
+			);
+			$this->db->insert("Tags",$dummy);		
+		}			
+	}
+	public function delete_article($id){
+		$this->db->query("delete from articles where ID = " . $id. "");
+		$this->db->query("delete from tags where ArticleID = " . $id. "");
+	}
 	public function insert_article($userID,$content,$title,$categoryID,$tags){
 	$article =array(
 				"CategoryID"  => $categoryID,

@@ -15,34 +15,62 @@ class AdminPanelController extends Nyxie
 		
 		$view = new View();
 		$view->assign("menu_bar", "left-menu.php");
-        $view->assign("content_file", "blog/articles-container.php");
+        $view->assign("content_file", "mode-articles\mode-article-container.php");
 		
 		
         $view->assign("articles", $articles);
         $view->display("mode.php");
     }
-	function index_get(){
+	
+	function mode_get(){
+		$article_model = new ArticleModel();
+		$var;//article ID
+		foreach ($_GET as $key => $value) { 
+		 $var = $value;
+		}
+		$articleDB  = $article_model->get_article($var);
+		$tagsDB  = $article_model->get_article_tags($var);
+		//tag field
+		$tags_field = "";
+		foreach ($tagsDB as $tag) { 
+		 $tags_field = $tags_field . " #" . $tag['Tag'];
+		}
 		$view = new View();
 		$view->assign("menu_bar", "left-menu.php");
-		$title = $_GET['title'];
-        $view->assign("title", $title);
-        $view->display("mode.php");
+		$view->assign("content", $articleDB['Content']);
+		$view->assign("id",$var);
+		$view->assign("title",$articleDB['Title']);
+		$view->assign("tags", $tags_field);
+        //$view->assign("articles", $articles);
+        $view->display("edit-article.php");
 	}
-    function checkmore()
-    {
-        $array = ["Item 1", "Item 2", "Item 3"];
+	
+	
+	function edit_article_post(){
+		$content = $_POST['content'];
+		$title = $_POST['title'];
+		$id = $_POST['id'];
+		$categoryID = "1";
+		$tags = $_POST['tags'];
         $view = new View();
-        $view->assign("title", "Lista");
-        $view->assign("items", $array);
-        $view->display("checkmore.php");
-    }
+		$article_model = new ArticleModel();
+		$article_model->update_article($id,$content,$title,$categoryID,$tags);		
+		$this->index();
+	}
+	
+	
+	function delete_article_post(){
+		$id = $_POST['id'];
+		$article_model = new ArticleModel();
+		$article_model->delete_article($id);	
+		$this->index();
+	}
+	
+
 	function add_article()
     {
-        $array = ["Item 1", "Item 2", "Item 3"];
         $view = new View();
 		$view->assign("menu_bar", "left-menu.php");
-        $view->assign("title", "Add article");
-        $view->assign("items", $array);
         $view->display("add-article.php");
     }
 	function add_article_post()

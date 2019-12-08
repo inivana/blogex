@@ -42,7 +42,10 @@ function route(){
 		if(user_url_splited[1] != ""){
 			window.location.replace("./");
 		}else{
-			window.location.replace("/");
+			if(user_url_splited[1] == "/"){
+				window.location.replace("/");
+			}
+			
 		}
 		break;
 	}

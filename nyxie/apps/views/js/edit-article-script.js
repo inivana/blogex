@@ -32,7 +32,6 @@
 	}
 	
 
-
 	function add_tag(){
 		
 		
@@ -50,4 +49,5 @@
 		if(currentTags == maximumTags){
 			document.getElementById("tag-button").disabled = true;
 		}
+	}
 	}

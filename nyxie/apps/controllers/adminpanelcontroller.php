@@ -4,11 +4,30 @@ class AdminPanelController extends Nyxie
 {
     function index()
     {
-        $view = new View();
+		$article_model = new ArticleModel();
+        $articles = $article_model->get_all();
+		
+        for($i = 0; $i < count($articles); $i++)
+        {
+            $articles[$i]["Content"] = substr($articles[$i]["Content"], 0, 350) . "...";
+        }
+		
+		
+		$view = new View();
 		$view->assign("menu_bar", "left-menu.php");
+        $view->assign("content_file", "blog/articles-container.php");
+		
+		
+        $view->assign("articles", $articles);
         $view->display("mode.php");
     }
-
+	function index_get(){
+		$view = new View();
+		$view->assign("menu_bar", "left-menu.php");
+		$title = $_GET['title'];
+        $view->assign("title", $title);
+        $view->display("mode.php");
+	}
     function checkmore()
     {
         $array = ["Item 1", "Item 2", "Item 3"];
@@ -46,32 +65,8 @@ class AdminPanelController extends Nyxie
 		$view->assign("menu_bar", "left-menu.php");
         $view->display("mode.php");
     }
-	function mode(){
-		
-		$article_model = new ArticleModel();
-        $articles = $article_model->get_all();
-		
-        for($i = 0; $i < count($articles); $i++)
-        {
-            $articles[$i]["Content"] = substr($articles[$i]["Content"], 0, 350) . "...";
-        }
-		
-		
-		$view = new View();
-		$view->assign("menu_bar", "left-menu.php");
-        $view->assign("content_file", "blog/articles-container.php");
-		
-		
-        $view->assign("articles", $articles);
-        $view->display("mode.php");
-	}
-	function mode_get(){
-		$view = new View();
-		$view->assign("menu_bar", "left-menu.php");
-		$title = $_GET['title'];
-        $view->assign("title", $title);
-        $view->display("mode.php");
-	}
+
+
 	function settings(){
 		$view = new View();
 		$view->assign("menu_bar", "left-menu.php");

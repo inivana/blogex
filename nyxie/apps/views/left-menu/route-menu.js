@@ -39,10 +39,10 @@ function route(){
 		}
 		break;
 		case "mode":
-		if(user_url.includes("mode") || (user_url_splited[1] != "")){
-			window.location.replace("mode");
+		if(user_url_splited[1] != ""){
+			window.location.replace("./");
 		}else{
-			window.location.replace(url+"mode");
+			window.location.replace("/");
 		}
 		break;
 	}

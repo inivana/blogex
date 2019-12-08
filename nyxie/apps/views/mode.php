@@ -7,6 +7,7 @@
 	 <script src="/nyxie/apps/views/js/mode-script.js"></script> 
 	<script src="/nyxie/apps/views/left-menu/route-menu.js"></script> 
 	 <link rel="stylesheet" href="/nyxie/apps/views/left-menu/left-menu.css">
+	  <link rel="stylesheet" href="/nyxie/apps/views/blog/styles/main.css">
     <link rel="stylesheet" href="/nyxie/apps/views/styles/mode-style.css">
 </head>
 

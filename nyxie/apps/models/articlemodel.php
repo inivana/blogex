@@ -22,16 +22,15 @@ class ArticleModel
 			);
 		
 	$this->db->insert("articles",$article);
-	
-	$articleFromDb = $this->db->query("select * from articles where title = \"" . trim($title) . "\"");
-	
+	$articleFromDb = $this->db->query("select * from articles where title = \"" . trim($title) . "\"");	
 	$exploded_tags = explode("#",$tags);
 	foreach ($exploded_tags as $tag){
+		if(trim($tag) == "") {continue;}
 		$dummy = array(
 			"Tag" => $tag,
-			"ArticleID" => $articleFromDb["ID"]
+			"ArticleID" => $articleFromDb[0]["ID"]
 		);
-		$this->db->insert("tags",$dummy);
+		$this->db->insert("Tags",$dummy);
 	
 	}
 	

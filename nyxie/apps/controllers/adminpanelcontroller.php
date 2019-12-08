@@ -63,7 +63,7 @@ class AdminPanelController extends Nyxie
 		$article_model->insert_article($userID,$content,$title,$categoryID,$tags);
 		
 		$view->assign("menu_bar", "left-menu.php");
-        $view->display("mode.php");
+        $view->display("add-article.php");
     }
 
 

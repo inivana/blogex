@@ -58,7 +58,7 @@ class AdminPanelController extends Nyxie
 		$this->index();
 	}
 	
-	
+		//delete comes from mode_comments view
 	function delete_article_post(){
 		$id = $_POST['id'];
 		$article_model = new ArticleModel();
@@ -66,6 +66,32 @@ class AdminPanelController extends Nyxie
 		$this->index();
 	}
 	
+	//delete comes from mode_comments view
+	function delete_post_post(){
+		$id = $_POST['id'];
+		$articleID = $_POST['articleID'];
+		$post_model = new PostModel();
+		$post_model->delete_post($id);	
+		$this->mode_comments_after_delete_post($articleID);
+	}
+	//view for mode - comments
+	function mode_comments_after_delete_post($cachedArticleID){
+		$view = new View();
+		$post_model = new PostModel();
+		$posts = $post_model->getAll($cachedArticleID);
+		$view->assign("menu_bar", "left-menu.php");
+		$view->assign("posts", $posts);
+        $view->display("edit-posts.php");
+	}
+	//view for mode - comments
+	function mode_comments_get(){
+		$view = new View();
+		$post_model = new PostModel();
+		$posts = $post_model->getAll($_GET["id"]);
+		$view->assign("menu_bar", "left-menu.php");
+		$view->assign("posts", $posts);
+        $view->display("edit-posts.php");
+	}
 
 	function add_article()
     {

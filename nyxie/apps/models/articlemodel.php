@@ -34,6 +34,7 @@ class ArticleModel
 	public function delete_article($id){
 		$this->db->query("delete from articles where ID = " . $id. "");
 		$this->db->query("delete from tags where ArticleID = " . $id. "");
+		$this->db->query("delete from comments where ArticleID = " . $id. "");
 	}
 	public function insert_article($userID,$content,$title,$categoryID,$tags){
 	$article =array(

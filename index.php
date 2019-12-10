@@ -13,6 +13,10 @@ $nyxie = new Nyxie;
 
 $nyxie->register_controller("blog", "BlogController", true);
 $nyxie->register_controller("adminpanel", "AdminPanelController");
+$nyxie->register_controller("auth", "AuthController");
 $nyxie->register_controller("articles", "ArticleController");
+
+$nyxie->protect_controller("adminpanel");
+
 
 $nyxie->start();

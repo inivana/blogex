@@ -48,11 +48,23 @@ CREATE TABLE COMMENTS
 );
 
 
- CREATE TABLE Tags(
-  ID int NOT NULL AUTO_INCREMENT,
-  Tag varchar(255) CHARACTER SET 'utf8' NOT NULL,
-  ArticleID int,
-  PRIMARY KEY (ID)
- );
+CREATE TABLE Tags
+(
+    ID        int                               NOT NULL AUTO_INCREMENT,
+    Tag       varchar(255) CHARACTER SET 'utf8' NOT NULL,
+    ArticleID int,
+    PRIMARY KEY (ID)
+);
 
+CREATE TABLE sessions
+(
+    ID      int NOT NULL AUTO_INCREMENT,
+    UserID  int,
+    Value   varchar(255) CHARACTER SET 'utf8',
+    IP      varchar(255) CHARACTER SET 'utf8',
+    Browser varchar(255) CHARACTER SET 'utf8',
+    Date    datetime DEFAULT CURRENT_TIMESTAMP,
+    Expired boolean  DEFAULT 0,
+    PRIMARY KEY (ID)
+);
 

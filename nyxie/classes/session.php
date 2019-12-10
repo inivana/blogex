@@ -1,85 +1,88 @@
 <?php
+define('COOKIE_EXPIRE', 5 * 60);
+define('COOKIE_NAME', 'sessval');
+
 class Session
 {
-	private	$config = array('COOKIE_NAME' => 'nyxie_cookie', 'COOKIE_EXPIRE' => 180),
-			$db_handler,
-			$id,
-			$ip,
-			$browser,
-			$time;
-			
-	function __construct($db_handler)
-	{	
-		$this->db_handler = $db_handler;
-	}
-	
-	function create_session($value)
-	{
-		if(!$this->is_session())
-		{
-			$ip = $_SERVER['REMOTE_ADDR'];
-			
-			$session_name = sha1(uniqid(time() + $ip));
-			$session_value = $value;
-			$session_time = time() + $this->config['COOKIE_EXPIRE'];
-			
-			$create = $this->db_handler->insert('sessions', array($session_name, $session_value, $session_time));
-			setCookie($this->config['COOKIE_NAME'], $session_name, $session_time);
-			
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	function regenerate_session()
-	{
-		$cookie_name = $_COOKIE[$this->config['COOKIE_NAME']];
-		$session_time = time() + $this->config['COOKIE_EXPIRE'];
-		
-		setCookie($this->config['COOKIE_NAME'], $_COOKIE[$this->config['COOKIE_NAME']], $session_time);
-		$this->db_handler->query('UPDATE `sessions` SET `session_time` = "' . $session_time . '" WHERE `session_name` = "' . $cookie_name . '"');
-	}
-	
-	function is_session()
-	{
-		if(array_key_exists($this->config['COOKIE_NAME'], $_COOKIE))
-			return true;
-		else
-			return false;
-	}
-	
-	function destroy_session($session_name = null)
-	{
-		$cookie_name = $_COOKIE[$this->config['COOKIE_NAME']];
-		
-		if(array_key_exists($this->config['COOKIE_NAME'], $_COOKIE))
-		{
-			setCookie($this->config['COOKIE_NAME'], 'deleted', time()-5);
-			
-			if($session_name == null)
-				$this->db_handler->query('DELETE FROM sessions WHERE session_name = "' . $cookie_name . '" LIMIT 1');
-			else
-				$this->db_handler->query('DELETE FROM sessions WHERE session_name = "' . $session_name . '" LIMIT 1' );
-			
-			return true;
-		}
-		else
-			return false;
-	}
-	
-	function garbage_collector()
-	{
-		$session = $this->db_handler->query(array('session_id', 'session_time'), 'sessions');
-		while($row = $this->db_handler->fetch())
-		{
-			if($row['session_time']  < time())
-			{
-				$this->destroy_session($row['session_id']);
-			}
-		}
-	}
+    static function create($user_id)
+    {
+        if (Session::exists()) {
+            return true;
+        }
+
+        $db = new Database;
+        $db->connect("localhost", "root", "", "blogex");
+
+        do {
+            $session_value = sha1(uniqid(time() + $_SERVER['REMOTE_ADDR']));
+            $result = $db->where("ID", "sessions", "value = '" . $session_value . "'");
+
+            if (!count($result)) {
+                break;
+            }
+        } while (1);
+
+        setcookie(COOKIE_NAME, $session_value, time() + COOKIE_EXPIRE, "/");
+        $db->query(sprintf('INSERT INTO sessions(Value, UserID, IP, Browser) VALUES("%s", "%s", "%s", "%s")',
+            $session_value,
+            $user_id,
+            $_SERVER['REMOTE_ADDR'],
+            $_SERVER['HTTP_USER_AGENT']
+        ));
+        return true;
+    }
+
+    public static function exists()
+    {
+        if (!array_key_exists(COOKIE_NAME, $_COOKIE))
+            return false;
+
+        $db = new Database;
+        $db->connect("localhost", "root", "", "blogex");
+
+        $session_value = $_COOKIE[COOKIE_NAME];
+
+        $result = $db->query('SELECT * FROM sessions WHERE value="' . $session_value . '" AND date > NOW() - INTERVAL ' . COOKIE_EXPIRE . ' SECOND AND Expired = 0');
+
+        if (!$result) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static function regenerate()
+    {
+        if (Session::exists()) {
+            $db = new Database;
+            $db->connect("localhost", "root", "", "blogex");
+
+            setCookie(COOKIE_NAME, $_COOKIE[COOKIE_NAME], time() + COOKIE_EXPIRE, "/");
+            $db->query('UPDATE sessions SET time = NOW() WHERE value = "' . $_COOKIE[COOKIE_NAME] . '"');
+            return true;
+        }
+        return false;
+    }
+
+    public static function destroy()
+    {
+        if (Session::exists()) {
+            $db = new Database;
+            $db->connect("localhost", "root", "", "blogex");
+
+            setCookie(COOKIE_NAME, "", time() - 5, "/");
+            echo 'UPDATE sessions SET Expired = 1 WHERE value = "' . $_COOKIE[COOKIE_NAME] . '"';
+            $db->query('UPDATE sessions SET Expired = 1 WHERE value = "' . $_COOKIE[COOKIE_NAME] . '"');
+            return true;
+        }
+        return false;
+    }
+
+    public static function garbage_collector()
+    {
+        $db = new Database;
+        $db->query('UPDATE sessions SET expired = 1 WHERE time < NOW() - INTERVAL ' . COOKIE_EXPIRE . ' SECOND');
+    }
 }
+
 ?>

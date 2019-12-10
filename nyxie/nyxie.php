@@ -20,6 +20,7 @@ spl_autoload_register(array('Nyxie', '__autoload'));
 class Nyxie
 {
     private $registered_controllers = [];
+    private $protected_routes = [];
     private $default_endpoint_name = null;
     private $default_method = "index";
 
@@ -62,6 +63,18 @@ class Nyxie
                 $endpoint_name = $this->default_endpoint_name;
                 $method_name = $this->default_method;
                 break;
+        }
+
+        // Auth
+        if (array_key_exists($endpoint_name, $this->protected_routes)) {
+            if ($this->protected_routes[$endpoint_name] == null || in_array($method_name, $this->protected_routes[$endpoint_name])) {
+                if (!Session::exists()) {
+                    echo "Session doesn't exists<br/>";
+                    header("Location: /auth");
+                } else {
+                    Session::regenerate();
+                }
+            }
         }
 
         $controller_class_name = $this->resolve_endpoint($endpoint_name);
@@ -107,6 +120,16 @@ class Nyxie
         }
 
         $this->registered_controllers[$endpoint_name] = $controller_name;
+    }
+
+    /*
+     * Protect unauthorized users to access route.
+     * if $methods_name == null then whole controller will be protected
+     * otherwise there should be list of methods
+     */
+    public function protect_controller($endpoint_name, $methods_name = null)
+    {
+        $this->protected_routes[$endpoint_name] = $methods_name;
     }
 
     static function __autoload($class_name)

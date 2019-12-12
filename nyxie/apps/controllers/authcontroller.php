@@ -17,7 +17,7 @@ class AuthController extends Nyxie
         $auth = new Auth();
         if ($user_id = $auth->login($_POST["email"], $_POST["password"])) {
             Session::create($user_id);
-            header("Location: /");
+            header("Location: " . $_SERVER['HTTP_REFERER']);
         } else {
             header("Location: /auth");
         }

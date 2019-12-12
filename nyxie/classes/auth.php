@@ -15,11 +15,6 @@ class Auth
         $result = $this->db->where("ID", "users", "email = '" . $email . "' AND password = '" . hash('sha256', $password) . "'");
         return boolval(count($result));
     }
-
-    public function __destruct()
-    {
-        $this->db->close();
-    }
 }
 
 ?>

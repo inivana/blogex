@@ -29,6 +29,7 @@ class Session
             $_SERVER['REMOTE_ADDR'],
             $_SERVER['HTTP_USER_AGENT']
         ));
+
         return true;
     }
 
@@ -76,6 +77,21 @@ class Session
             return true;
         }
         return false;
+    }
+
+    public static function get_user_id()
+    {
+        if (Session::exists()) {
+            $db = new Database;
+            $db->connect("localhost", "root", "", "blogex");
+
+            $result = $db->query('SELECT * FROM sessions WHERE value="' . $_COOKIE[COOKIE_NAME] . '"');
+
+            if (array_key_exists("UserID", $result[0])) {
+                return $result[0]["UserID"];
+            }
+        }
+        return null;
     }
 
     public static function garbage_collector()

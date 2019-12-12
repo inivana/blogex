@@ -9,8 +9,7 @@ class BlogController extends Nyxie
 
         // Trim articles content
         // TODO: Evaluate category name by id
-        for($i = 0; $i < count($articles); $i++)
-        {
+        for ($i = 0; $i < count($articles); $i++) {
             $articles[$i]["Content"] = substr($articles[$i]["Content"], 0, 350) . "...";
         }
 

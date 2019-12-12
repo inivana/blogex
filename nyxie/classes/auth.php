@@ -13,7 +13,11 @@ class Auth
     public function login($email, $password)
     {
         $result = $this->db->where("ID", "users", "email = '" . $email . "' AND password = '" . hash('sha256', $password) . "'");
-        return boolval(count($result));
+
+        if (array_key_exists("ID", $result[0]))
+            return $result[0]["ID"];
+        else
+            return null;
     }
 }
 

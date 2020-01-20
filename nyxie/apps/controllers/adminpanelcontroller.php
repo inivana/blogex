@@ -105,6 +105,7 @@ class AdminPanelController extends Nyxie
 	
 	function add_article_post()
     {
+
 		$content = $_POST['content'];
 		$title = $_POST['title'];
 		$categoryID = "1";

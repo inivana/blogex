@@ -101,11 +101,6 @@ class AdminPanelController extends Nyxie
     }
 	function add_article_post()
     {
-		//INSERT INTO `users`( `LastName`, `Password`, `FirstName`, `Email`, `Premium`) VALUES ("Pudzian","123","Mirek","awesomebug15230@gmail.com",false) 
-		//INSERT INTO `categories`(`Category`) VALUES ('Sport')
-		//INSERT INTO `categories`(`Category`) VALUES ('Drugs')
-		//INSERT INTO `categories`(`Category`) VALUES ('Women in your area')
-		//INSERT INTO `articles`(`Title`, `Content`, `Date`, `UserID`, `CategoryID`) VALUES ('Nowy rok','Gralem w gre. -Jaką? - Tomb Rider. - Dziekuje.','2019-12-31',1,1)
 
 		$content = $_POST['content'];
 		$title = $_POST['title'];

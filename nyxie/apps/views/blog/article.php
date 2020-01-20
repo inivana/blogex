@@ -36,17 +36,20 @@
                 </div>
                 ';?>
 	</div>
+
 	<div id ="write-comment-container">
-	<form action="posts" method="POST">
+		<?php if(isset($permission) && $permission == 0){
+		echo '	<form action="posts" method="POST">
 	<textarea name="content"></textarea>
-	<?php
-		echo '<input type="hidden" name="id" value="'. $article["ID"] .'"/>';
-	?>
+	<input type="hidden" name="id" value="'. $article["ID"] .'"/>
 	<input type="submit" id="post-comment" value="Opublikuj"/>
-	
+	</form>';
+	} else{
+		echo 'Zablokowano mozliwosc dodawania komentarzy';
+	}?>
 
 	
-	</form>
+	
 	</div>
 	
 	<div id="post-content">
@@ -54,7 +57,7 @@
 			foreach ($posts as $post){
 				echo '
                 <div class="post">
-                    <div class="post-author">' . $post["UserID"] . '</div>
+                    <div class="post-author">' . $post["user"] . '</div>
                         <div class="post-description">
                             <div class="post-date">' . $post["Date"] . '</div>
                         </div>

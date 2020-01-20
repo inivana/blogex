@@ -74,6 +74,8 @@ class AdminPanelController extends Nyxie
 		$post_model->delete_post($id);	
 		$this->mode_comments_after_delete_post($articleID);
 	}
+	
+	
 	//view for mode - comments
 	function mode_comments_after_delete_post($cachedArticleID){
 		$view = new View();
@@ -99,23 +101,18 @@ class AdminPanelController extends Nyxie
 		$view->assign("menu_bar", "left-menu.php");
         $view->display("add-article.php");
     }
+	
+	
 	function add_article_post()
     {
-		//INSERT INTO `users`( `LastName`, `Password`, `FirstName`, `Email`, `Premium`) VALUES ("Pudzian","123","Mirek","awesomebug15230@gmail.com",false) 
-		//INSERT INTO `categories`(`Category`) VALUES ('Sport')
-		//INSERT INTO `categories`(`Category`) VALUES ('Drugs')
-		//INSERT INTO `categories`(`Category`) VALUES ('Women in your area')
-		//INSERT INTO `articles`(`Title`, `Content`, `Date`, `UserID`, `CategoryID`) VALUES ('Nowy rok','Gralem w gre. -Jaką? - Tomb Rider. - Dziekuje.','2019-12-31',1,1)
-
 		$content = $_POST['content'];
 		$title = $_POST['title'];
 		$categoryID = "1";
-		$userID = "1";
+		$userID = Session::get_user_id();
 		$tags = $_POST['tags'];
         $view = new View();
 		$article_model = new ArticleModel();
 		$article_model->insert_article($userID,$content,$title,$categoryID,$tags);
-		
 		$view->assign("menu_bar", "left-menu.php");
         $view->display("add-article.php");
     }
@@ -123,8 +120,36 @@ class AdminPanelController extends Nyxie
 
 	function settings(){
 		$view = new View();
+		$um = new UserModel();
+		$data = $um->get_user_informations(Session::get_user_id());
+		$view->assign("articles",$data[0]["articles"]);
+		$view->assign("comments",$data[0]["comments"]);
+		$view->assign("firstname",$data[0]["FirstName"]);
+		$view->assign("lastname",$data[0]["LastName"]);
+		$view->assign("email",$data[0]["email"]);
+		$view->assign("blocked",$data[0]["blocked"]);
+		$view->assign("premium",$data[0]["premium"]);
 		$view->assign("menu_bar", "left-menu.php");
         $view->display("settings.php");
 	}
+	
+	function settings_post(){
+		$view = new View();
+		if(isset($_POST["old-password"])){
+			$old_password = $_POST["old-password"];
+			$new_password = $_POST["new-password"];
+			$um = new UserModel();
+			$um->change_password($old_password,$new_password,Session::get_user_id());
+		}
+		else if(isset($_POST["comment-permission"])){
+			$um = new UserModel();
+			$um->block_comments(0,Session::get_user_id());
+		}else{
+			$um = new UserModel();
+			$um->block_comments(1,Session::get_user_id());
+		}
+        $this->settings();
+	}
+	
 	 
 }

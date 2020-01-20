@@ -10,7 +10,7 @@ class ArticleModel
 
     public function get_all()
     {
-        return $this->db->select("*", "articles");
+        return $this->db->query("select * from articles");
     }
 	public function get_article($id){
 		return $this->db->query("select * from articles where ID = \"" . trim($id) . "\"")[0];	

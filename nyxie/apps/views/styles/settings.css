@@ -17,8 +17,14 @@
 	
 }
 
-#password-form,#email-form,#global-form,#stats-form{
+#email-form,#global-form,#stats-form{
 	margin-left:13%;
+	width:30%;
+	margin-top:5%;
+	float:left;
+}
+#password-form{
+	margin-left:33%;
 	width:30%;
 	margin-top:5%;
 	float:left;

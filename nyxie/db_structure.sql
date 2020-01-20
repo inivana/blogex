@@ -6,6 +6,7 @@ CREATE TABLE Users
     FirstName varchar(255) CHARACTER SET 'utf8',
     Email     varchar(255) CHARACTER SET 'utf8',
     Premium   boolean,
+    Blocked   boolean,
     PRIMARY KEY (ID)
 );
 
@@ -69,8 +70,8 @@ CREATE TABLE sessions
 );
 
 # Sample data
-INSERT INTO `users` (`ID`, `LastName`, `Password`, `FirstName`, `Email`, `Premium`)
-VALUES (1, 'Admin', '8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918', 'Admin', 'admin', 1);
+INSERT INTO `users` (`ID`, `LastName`, `Password`, `FirstName`, `Email`, `Premium`,`Blocked`)
+VALUES (1, 'Admin', '8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918', 'Admin', 'admin', 1,0);
 
 INSERT INTO `articles` (`ID`, `Title`, `Content`, `Date`, `UserID`, `CategoryID`)
 VALUES (1, 'Second article',

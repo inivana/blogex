@@ -24,47 +24,39 @@
 		 
 		 <table id="global-form">
 		 	<tr>
-			<td>Login</td>
-			<td>Janusz Kurwin Nikke</td>
-			</tr>
-		 	<tr>
-			<td>Email</td>
-			<td>kulaognia69@gmail.com</br></td>
+			<td>Email/Login</td>
+			<td><?= $email?></br></td>
 			</tr>
 			<tr>
-			<td>Ranga</td>
-			<td>Kałamarz</td>
+			<td>Imie</td>
+			<td><?= $firstname?></td>
 			</tr>
+			<tr>
+			<td>Nazwisko</td>
+			<td><?= $lastname?></td>
+			</tr>
+
 		 	<tr>
 			<td>Status</td>
-			<td>Premium</td>
+			<td><?= $premium?></td>
 			</tr>
 		 	<tr>
 		 </table>
 		 
 		 <table id="stats-form">
 		 	<tr>
-			<td>Opublikowane artykuy</td>
-			<td>4</td>
-			</tr>
-			<td>Ilosc artykolow na 5</td>
-			<td>2</td>
-			</tr>			
+			<td>Opublikowane artykuly</td>
+			<td><?= $articles?></td>
 		 	<tr>
-			<td>Opublikowane komenatrze</td>
-			<td>45</br></td>
+			<td>Ilosc komenatrzy</td>
+			<td><?= $comments ?></td>
 			</tr>
-		 	<tr>
-			<td>Srednia komentarzy na artykul</td>
-			<td>6</td>
-			</tr>
-		 	<tr>
 		 </table>
 		 
 		 </div>
 		 <div id="manage-container">
 		 <div class="header">Zmien informacje</div>
-		 <form action="costam" method="POST">
+		 <form action="settings" method="POST">
 		 <table id="password-form">
 			<tr>
 			<td>Aktualne haslo</td>
@@ -86,23 +78,6 @@
 			
 		 </form>
 
-		<form action="costam" method="POST">
-		 <table id="email-form">
-			<tr>
-			<td>Nowy email</td>
-			<td><input name="new-email" type="text" placeholder="nowy email"/></br></td>
-			</tr>
-		 	<tr>
-			<td>Haslo</td>
-			<td> <input name="password" type="password" placeholder="haslo"/></br></td>
-			</tr>
-			<tr>
-			<td>Zatwierdz</td>
-			<td><input class="submit-button" id="change_email" disabled="true" type="submit" value="Zmien email"/></td>
-			</tr>
-		 </table>
-			
-		 </form>
 		 
 		 
 		 
@@ -110,27 +85,18 @@
 		 
 		 <div id="settings-container">
 		 <div class="header">Ustawienia Artykulow</div>
+		 <form action="settings" method="POST">
 		    <table id="settings-form">
-			<form action="costam" method="POST">
+			<form action="settings" method="POST">
 			<tr>
 			<td>Mozliwosc komentowania twoich artykulow przez odwiedzajacych</td>
-			<td><input type="checkbox" name="vis-comment-permittion" ></td>
-			</tr>
-		 	<tr>
-			<td>Mozliwosc komentowania twoich artykulow przez uzytkownikow zalogowanych</td>
-			<td><input type="checkbox" name="user-comment-permittion" checked></td>
-			</tr>
-			<tr>
-			<td>Wylacz mozliwosc oceny twoich artykulow</td>
-			<td><input type="checkbox" name="user-score-permittion" checked></td>
-			</tr>
-			</form>
-			<tr>
-			<td>Szablon</td>
-			<td><input type="button" class="submit-button" value="Edytuj"></td>
+			<td><input type="checkbox" <?php if($blocked == "0") echo 'checked'; ?> name="comment-permission" ></td>
+			<td><input type="submit" class="submit-button" value="Zatwierdz" ></td>
+			<td><input type="hidden" name="fix" value="fixed" ></td>
 			</tr>
 		 </table>
-
+		 
+		 </form>
 		 </div>
 
 		 </div>

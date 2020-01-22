@@ -69,7 +69,6 @@ class Nyxie
         if (array_key_exists($endpoint_name, $this->protected_routes)) {
             if ($this->protected_routes[$endpoint_name] == null || in_array($method_name, $this->protected_routes[$endpoint_name])) {
                 if (!Session::exists()) {
-                    echo "Session doesn't exists<br/>";
                     header("Location: /auth");
                 } else {
                     Session::regenerate();
@@ -87,6 +86,23 @@ class Nyxie
 
         if (!method_exists($controller_class_name, $method_name)) {
             $method_name = $this->default_method;
+        }
+
+        if (isset($_GET["debug"])) {
+            echo "Controller classname: " . $controller_class_name . "<br>";
+            echo "Method name: " . $method_name . "<br>";
+            if (Session::exists())
+                echo "User logged as: " . Session::get_user_id() . "<br>";
+            else
+                echo "User not logged<br>";
+            echo "GET variables<br>";
+            echo "<pre>";
+            var_dump($_GET);
+            echo "</pre>";
+            echo "POST variables<br>";
+            echo "<pre>";
+            var_dump($_POST);
+            echo "</pre>";
         }
 
         try {

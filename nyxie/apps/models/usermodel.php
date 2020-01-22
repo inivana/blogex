@@ -5,7 +5,6 @@ class UserModel
     public function __construct()
     {
         $this->db = new Database();
-        $this->db->connect("localhost", "root", "", "blogex");
     }
 
    public function change_password($old_password,$new_password,$user_id){

@@ -11,7 +11,6 @@ class Session
         }
 
         $db = new Database;
-        $db->connect("localhost", "root", "", "blogex");
 
         do {
             $session_value = sha1(uniqid(time() + $_SERVER['REMOTE_ADDR']));
@@ -39,7 +38,6 @@ class Session
             return false;
 
         $db = new Database;
-        $db->connect("localhost", "root", "", "blogex");
 
         $session_value = $_COOKIE[COOKIE_NAME];
 
@@ -56,7 +54,6 @@ class Session
     {
         if (Session::exists()) {
             $db = new Database;
-            $db->connect("localhost", "root", "", "blogex");
 
             setCookie(COOKIE_NAME, $_COOKIE[COOKIE_NAME], time() + COOKIE_EXPIRE, "/");
             $db->query('UPDATE sessions SET time = NOW() WHERE value = "' . $_COOKIE[COOKIE_NAME] . '"');
@@ -69,7 +66,6 @@ class Session
     {
         if (Session::exists()) {
             $db = new Database;
-            $db->connect("localhost", "root", "", "blogex");
 
             setCookie(COOKIE_NAME, "", time() - 5, "/");
             echo 'UPDATE sessions SET Expired = 1 WHERE value = "' . $_COOKIE[COOKIE_NAME] . '"';
@@ -83,7 +79,6 @@ class Session
     {
         if (Session::exists()) {
             $db = new Database;
-            $db->connect("localhost", "root", "", "blogex");
 
             $result = $db->query('SELECT * FROM sessions WHERE value="' . $_COOKIE[COOKIE_NAME] . '"');
 

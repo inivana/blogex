@@ -11,6 +11,7 @@ class Database
             throw new Exception("Cannot load DB interface");
         }
         Database::$database_instance = new $interface();
+        Database::$database_instance->connect("localhost", "root", "", "blogex");
     }
 
     public function __call($name, $arguments)

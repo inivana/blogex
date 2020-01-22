@@ -23,10 +23,9 @@ CREATE TABLE articles
     ID         int NOT NULL AUTO_INCREMENT,
     Title      varchar(255) CHARACTER SET 'utf8',
     Content    varchar(65534) CHARACTER SET 'utf8',
-    Date       datetime DEFAULT CURRENT_TIMESTAMP,
+    Date       timestamp DEFAULT CURRENT_TIMESTAMP,
     UserID     int,
     CategoryID int,
-
     PRIMARY KEY (ID)
 );
 
@@ -42,7 +41,7 @@ CREATE TABLE comments
 (
     ID        int NOT NULL AUTO_INCREMENT,
     Content   varchar(500) CHARACTER SET 'utf8',
-    Date      datetime DEFAULT CURRENT_TIMESTAMP,
+    Date      timestamp DEFAULT CURRENT_TIMESTAMP,
     UserID    int,
     ArticleID int,
     PRIMARY KEY (ID)
@@ -64,8 +63,8 @@ CREATE TABLE sessions
     Value   varchar(255) CHARACTER SET 'utf8',
     IP      varchar(255) CHARACTER SET 'utf8',
     Browser varchar(255) CHARACTER SET 'utf8',
-    Date    datetime DEFAULT CURRENT_TIMESTAMP,
-    Expired boolean  DEFAULT 0,
+    Date    timestamp DEFAULT CURRENT_TIMESTAMP,
+    Expired boolean   DEFAULT 0,
     PRIMARY KEY (ID)
 );
 

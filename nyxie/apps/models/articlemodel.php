@@ -9,7 +9,7 @@ class ArticleModel
 
     public function get_all()
     {
-        return $this->db->query("select * from articles");
+        return $this->db->query("select * from articles order by id desc");
     }
 	public function get_article($id){
 		return $this->db->query("select * from articles where ID = \"" . trim($id) . "\"")[0];	

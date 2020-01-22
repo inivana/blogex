@@ -1,4 +1,4 @@
-CREATE TABLE Users
+CREATE TABLE users
 (
     ID        int NOT NULL AUTO_INCREMENT,
     LastName  varchar(255) CHARACTER SET 'utf8',
@@ -10,7 +10,7 @@ CREATE TABLE Users
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE CATEGORIES
+CREATE TABLE categories
 (
     ID       int                               NOT NULL AUTO_INCREMENT,
     Category varchar(255) CHARACTER SET 'utf8' NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE CATEGORIES
     UNIQUE (Category)
 );
 
-CREATE TABLE ARTICLES
+CREATE TABLE articles
 (
     ID         int NOT NULL AUTO_INCREMENT,
     Title      varchar(255) CHARACTER SET 'utf8',
@@ -30,15 +30,15 @@ CREATE TABLE ARTICLES
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE ARTICLES_CATEGORIES
+CREATE TABLE articles_categories
 (
     ID         int NOT NULL AUTO_INCREMENT,
     UserID     int,
     CategoryID int,
-    PRIMARY KEY (ID),
+    PRIMARY KEY (ID)
 );
 
-CREATE TABLE COMMENTS
+CREATE TABLE comments
 (
     ID        int NOT NULL AUTO_INCREMENT,
     Content   varchar(500) CHARACTER SET 'utf8',
@@ -49,7 +49,7 @@ CREATE TABLE COMMENTS
 );
 
 
-CREATE TABLE Tags
+CREATE TABLE tags
 (
     ID        int                               NOT NULL AUTO_INCREMENT,
     Tag       varchar(255) CHARACTER SET 'utf8' NOT NULL,

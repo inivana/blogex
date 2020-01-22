@@ -26,11 +26,8 @@
     </div>
     <div id="menu">
         <ul id="menu-list">
-            <?php
-            foreach ($menu_links as $menu_link) {
-                echo "<li><a href='" . $menu_link["href"] . "'>" . $menu_link["label"] . "</a></li>";
-            }
-            ?>
+            <li><a href="/">Menu</a></li>
+            <li><a href="/adminpanel">Admin Panel</a></li>
         </ul>
     </div>
 </div>

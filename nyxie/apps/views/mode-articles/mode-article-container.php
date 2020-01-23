@@ -8,15 +8,15 @@
                             <div class="article-date">' . $article["Date"] . '</div>
                         </div>
                     <div class="article-brief">' . $article["Content"] . '</div>
-					<form action="/adminpanel/mode" method="GET">
+					<form action="/~s6/adminpanel/mode" method="GET">
 					<input type="submit"  value="Edytuj artykul" />
 					<input type="hidden" name="id" value="'.$article["ID"].'" />
 					</form>
-					<form action="/adminpanel/delete_article" method="POST">
+					<form action="/~s6/adminpanel/delete_article" method="POST">
 					<input type="submit"  value="Usun artykul" />
 					<input type="hidden" name="id" value="'.$article["ID"].'" />
 					</form>
-					<form action="/adminpanel/mode_comments" method="GET">
+					<form action="/~s6/adminpanel/mode_comments" method="GET">
 					<input type="submit"  value="Moderuj komentarze" />
 					<input type="hidden" name="id" value="'.$article["ID"].'" />
 					</form>

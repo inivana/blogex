@@ -3,7 +3,7 @@
     <meta charset="utf-8">
 
     <title>Index</title>
-	 <link rel="stylesheet" href="/nyxie/apps/views/blog/styles/article.css">
+    <link rel="stylesheet" href="/~s6/nyxie/apps/views/blog/styles/article.css">
 </head>
 
 <body>
@@ -71,8 +71,8 @@
     </div>
     <div id="menu">
         <ul id="menu-list">
-            <li><a href="/">Menu</a></li>
-            <li><a href="/adminpanel">Admin Panel</a></li>
+            <li><a href="/~s6/">Menu</a></li>
+            <li><a href="/~s6/adminpanel">Admin Panel</a></li>
         </ul>
     </div>
 </div>

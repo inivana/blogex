@@ -10,7 +10,7 @@ class ArticleController extends Nyxie{
 		$view->assign("id",$article['Title']);
         $menu_links = [
             array("label" => "Main", "href" => ""),
-            array("label" => "Admin Panel", "href" => "/adminpanel"),
+            array("label" => "Admin Panel", "href" => "adminpanel"),
             array("label" => "Categories", "href" => ""),
             array("label" => "About", "href" => ""),
             array("label" => "Contact", "href" => ""),
@@ -34,7 +34,7 @@ class ArticleController extends Nyxie{
 		$view->assign("id",$article['Title']);
         $menu_links = [
             array("label" => "Main", "href" => ""),
-            array("label" => "Admin Panel", "href" => "/adminpanel"),
+            array("label" => "Admin Panel", "href" => "adminpanel"),
             array("label" => "Categories", "href" => ""),
             array("label" => "About", "href" => ""),
             array("label" => "Contact", "href" => ""),

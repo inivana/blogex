@@ -15,7 +15,7 @@ class AdminPanelController extends Nyxie
 		
 		$view = new View();
 		$view->assign("menu_bar", "left-menu.php");
-        $view->assign("content_file", "mode-articles\mode-article-container.php");
+        $view->assign("content_file", "mode-articles/mode-article-container.php");
 		
 		
         $view->assign("articles", $articles);

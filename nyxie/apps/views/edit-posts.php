@@ -3,10 +3,10 @@
     <meta charset="utf-8">
 
     <title>Index</title>
-	 
-	 <script src="/nyxie/apps/views/left-menu/route-menu.js"></script> 
-	 <link rel="stylesheet" href="/nyxie/apps/views/left-menu/left-menu.css">
-	 <link rel="stylesheet" href="/nyxie/apps/views/styles/edit-posts.css">
+
+    <script src="/~s6/nyxie/apps/views/left-menu/route-menu.js"></script>
+    <link rel="stylesheet" href="/~s6/nyxie/apps/views/left-menu/left-menu.css">
+    <link rel="stylesheet" href="/~s6/nyxie/apps/views/styles/edit-posts.css">
 </head>
 
 <body >

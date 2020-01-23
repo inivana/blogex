@@ -18,9 +18,9 @@ function route(){
 		break;
 		case "blogex": 
 		if(user_url_splited[1] != ""){
-			window.location.replace("../");
+			window.location.replace("/~s6/");
 		}	else{
-			window.location.replace("/");
+			window.location.replace("/~s6/");
 		}
 		
 		break;

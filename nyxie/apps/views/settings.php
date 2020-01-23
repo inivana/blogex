@@ -3,11 +3,11 @@
     <meta charset="utf-8">
 
     <title>Index</title>
-	 
-	 <script src="/nyxie/apps/views/js/settings.js"></script> 
-	 <script src="/nyxie/apps/views/left-menu/route-menu.js"></script> 
-	 <link rel="stylesheet" href="/nyxie/apps/views/left-menu/left-menu.css">
-	 <link rel="stylesheet" href="/nyxie/apps/views/styles/settings.css">
+
+    <script src="/~s6/nyxie/apps/views/js/settings.js"></script>
+    <script src="/~s6/nyxie/apps/views/left-menu/route-menu.js"></script>
+    <link rel="stylesheet" href="/~s6/nyxie/apps/views/left-menu/left-menu.css">
+    <link rel="stylesheet" href="/~s6/nyxie/apps/views/styles/settings.css">
 </head>
 
 <body onload="load()">

@@ -8,7 +8,7 @@ class AuthController extends Nyxie
         $view->display("auth/form.php");
 
         if (Session::exists()) {
-            header("Location: /");
+            header("Location: /~s6");
         }
     }
 
@@ -19,13 +19,13 @@ class AuthController extends Nyxie
             Session::create($user_id);
             header("Location: " . $_SERVER['HTTP_REFERER']);
         } else {
-            header("Location: /auth");
+            header("Location: auth");
         }
     }
 
     function logout()
     {
         Session::destroy();
-        header("Location: /auth");
+        header("Location: auth");
     }
 }

@@ -34,7 +34,7 @@ class Nyxie
         $method_name = null;
 
         // Remove first slash to parse it easier
-        $request_url = ltrim($_SERVER["REQUEST_URI"], "/");
+        $request_url = ltrim($_SERVER["REQUEST_URI"], "/~s6");
 
         // Delete GET parameters from url if passed
         $get_params_start = strpos($request_url, "?");
@@ -69,7 +69,7 @@ class Nyxie
         if (array_key_exists($endpoint_name, $this->protected_routes)) {
             if ($this->protected_routes[$endpoint_name] == null || in_array($method_name, $this->protected_routes[$endpoint_name])) {
                 if (!Session::exists()) {
-                    header("Location: /auth");
+                    header("Location: auth");
                 } else {
                     Session::regenerate();
                 }

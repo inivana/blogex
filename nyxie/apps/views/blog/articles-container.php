@@ -8,7 +8,7 @@
                             <div class="article-date">' . $article["Date"] . '</div>
                         </div>
                     <div class="article-brief">' . $article["Content"] . '</div>
-                    <a href="/articles/?id=' . $article["ID"] . '">Read more!</a>
+                    <a href="/~s6/articles/?id=' . $article["ID"] . '">Read more!</a>
                 </div>
                 ';
     }

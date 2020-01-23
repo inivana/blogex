@@ -1,19 +1,21 @@
-
-
-body{
-	width:100%;
-	height:100%;
-	margin: 0px;
-	background-color : #7a9ba1;
-	paddding :0px;
-	background-image: url("/nyxie/apps/views/blog/assets/images/background.png");
+* {
+    margin: 0;
+    padding: 0;
 }
+
+body {
+    background-color: #a48fff;
+    background-image: url("/nyxie/apps/views/blog/assets/images/letters.png");
+	background-attachment: fixed;
+	background-position: center;
+}
+
 input {
 	width:20%;
 }
 
 #content-container{
-	
+	margin-left: 15%;
 	width:60%;
 	float:left;
 }
@@ -24,17 +26,24 @@ input {
 }
 
 .article {
-    border: 1px black solid;
-    margin-bottom: 10px;
+	color: #D4213D;
+	font-family: verdana;
+    border: 8px #D4213D solid;
+	background-color: #E9E8E7;
+    margin-bottom: 32px;
+	padding: 8px;
+	box-shadow: 0px 0 14px #D4213D;
 }
 
 .article-title {
-    font-size: 1.5rem;
+	text-align: center;
+    font-size: 2rem;
     font-weight: bold;
 }
 
 .article-description {
-    border-bottom: 1px #000000 dashed;
+    border-bottom: 2px #D4213D dashed;
+	padding: 4px;
 }
 
 .article-category {
@@ -44,4 +53,10 @@ input {
 
 .article-date {
 
+}
+
+.article-brief {
+	font-weight: bold;
+	padding: 8px;
+	text-align: justify;
 }

@@ -1,3 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #a48fff;
+    background-image: url("/nyxie/apps/views/blog/assets/images/letters.png");
+	background-attachment: fixed;
+	background-position: center;
+}
 
 #post-comment{ 
 	width : 20%;
@@ -6,22 +17,27 @@
 	margin-left :80%;
 }
 #post-content{
-	margin-left:10%;
+	margin-left: 17.75%;
+    margin-top: 16px;
 }
 .post {
-    border: 1px purple solid;
+	background-color: #E9E8E780;
+	color: #D4213D;
+    border: 8px #D4213D solid;
     margin-bottom: 10px;
-	width: 40%;
-	margin-left:30%;
-	margin-right:10%;
+	width: 80%;
+	font-family: verdana;
+	font-weight: 900;
 }
 
 .post-author {
+	padding: 8px;
     font-size: 1.5rem;
     font-weight: bold;
 }
 
 .post-description {
+	padding: 8px;
     border-bottom: 1px #000000 dashed;
 }
 
@@ -30,14 +46,8 @@
 
 } 
 
-
-
-
-body {
-    /*background-color: lightgoldenrodyellow;*/
-	   margin: 0;
-    padding: 0;
-    background-image: url("/nyxie/apps/views/blog/assets/images/background.png");
+.post-brief {
+	padding: 8px;
 }
 
 

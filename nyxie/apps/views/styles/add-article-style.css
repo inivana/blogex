@@ -1,12 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    background-color: #a48fff;
+    background-image: url("/nyxie/apps/views/blog/assets/images/letters.png");
+	background-attachment: fixed;
+	background-position: center;
+}
 
 #add-article-container{
-	float:left;
-	width: 80%;
-	height: 90%;
-	background-color : #614444;
-	margin-left: 2.5%;
-	margin-top:2%;
+float: left;
+    width: 80%;
+    height: 90%;
+    background-color: #614444;
+    margin-left: 17.75%;
+    margin-top: 2%;
 }
 
 #article-title-container{
@@ -85,11 +95,4 @@
 span{
 	font-size: 33px;
 	margin-left: 1%;
-}
-body{
-	width:100%;
-	height:100%;
-	margin: 0px;
-	background-image: url("/nyxie/apps/views/blog/assets/images/background.png");
-	paddding :0px;
 }

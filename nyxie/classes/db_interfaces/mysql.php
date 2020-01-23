@@ -47,16 +47,21 @@ class MySQL implements IDatabase
         if (is_bool($query_result)) {
             $return_result = $query_result;
         } else {
-            $return_result = $query_result->fetch_all(MYSQLI_ASSOC);
+            $return_result = $this->fetch_all($query_result);
             $query_result->close();
         }
-
         return $return_result;
     }
 
     private function add_quotes($value)
     {
         return "\"" . $value . "\"";
+    }
+
+    private function fetch_all($query_result)
+    {
+        for ($res = array(); $tmp = $query_result->fetch_array(MYSQLI_ASSOC);) $res[] = $tmp;
+        return $res;
     }
 
     public function __destruct()
